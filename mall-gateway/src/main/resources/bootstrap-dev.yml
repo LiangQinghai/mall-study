@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://127.0.0.1:8848
+        group: mall-study
+        namespace: 400893f0-3d21-496f-bca7-80655baecff0
+      config:
+        server-addr: http://127.0.0.1:8848
+        group: mall-study
+        namespace: 400893f0-3d21-496f-bca7-80655baecff0
