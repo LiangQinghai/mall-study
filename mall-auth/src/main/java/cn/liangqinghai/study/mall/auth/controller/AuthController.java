@@ -1,7 +1,7 @@
 package cn.liangqinghai.study.mall.auth.controller;
 
-import cn.liangqinghai.study.mall.auth.domain.Oauth2TokenDTO;
 import cn.liangqinghai.study.mall.common.api.ResultDTO;
+import cn.liangqinghai.study.mall.common.domain.Oauth2TokenDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.SneakyThrows;
@@ -29,6 +29,7 @@ import java.util.Map;
  */
 @RestController
 @Api(tags = "认证中心接口")
+@RequestMapping("/oauth")
 public class AuthController {
 
     private final TokenEndpoint tokenEndpoint;

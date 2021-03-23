@@ -1,0 +1,87 @@
+server:
+  port: 8586
+spring:
+  application:
+    name: mall-admin
+  zipkin:
+    base-url: http://127.0.0.1:9411
+  cloud:
+    sentinel:
+      transport:
+        port: 9311
+        dashboard: 127.0.0.1:9311
+      datasource:
+        ds2.nacos:
+          server-addr: 127.0.0.1:8848
+          data-id: ${spring.application.name}-sentinel
+          group-id: dev
+          rule-type: flow
+      filter:
+        enabled: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      url: jdbc:mysql://127.0.0.1:3308/mall-study?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+      username: root
+      password: liang
+      initial-size: 2
+      min-idle: 2
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 30000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat,slf4j
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: .js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*
+      stat-view-servlet:
+        url-pattern: /druid/*
+        allow:
+        deny:
+        reset-enable: false
+        login-username: liang
+        login-password: liang123
+        enabled: true
+      filter:
+        stat:
+          enabled: true
+        wall:
+          config:
+            condition-and-alway-true-allow: true
+            condition-and-alway-false-allow: true
+      aop-patterns: cn.liangqinghai.study.mall.admin.service.*,cn.liangqinghai.study.mall.admin.controller.*
+  sleuth:
+    feign:
+      enabled: false
+feign:
+  sentinel:
+    enabled: true
+  okhttp:
+    enabled: true
+  httpclient:
+    enabled: false
+  hystrix:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  OkToRetryOnAllOperations: false
+  MaxAutoRetriesNextServer: 0
+  MaxAutoRetries: 0
+

@@ -23,7 +23,7 @@ db.num: 1
 ### Connect URL of DB:
 db.url.0: jdbc:mysql://127.0.0.1:3308/nacos?useSSL=false&characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&serverTimezone=Asia/Shanghai
 db.user: root
-db.password: Mr.Liang0530
+db.password: liang
 
 
 #*************** Naming Module Related Configurations ***************#

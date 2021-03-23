@@ -1,4 +1,4 @@
-package cn.liangqinghai.study.mall.auth.domain;
+package cn.liangqinghai.study.mall.common.domain;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;

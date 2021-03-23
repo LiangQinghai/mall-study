@@ -1,6 +1,7 @@
 package cn.liangqinghai.study.mall.gateway.filter;
 
 import cn.liangqinghai.study.mall.gateway.config.IgnoreUrlsConfig;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
@@ -24,6 +25,7 @@ import java.util.List;
  * @author LiangQinghai
  * @since 2021/3/19 11:36
  */
+@Slf4j
 @Component
 public class WhiteListFilter implements WebFilter {
 
@@ -39,7 +41,7 @@ public class WhiteListFilter implements WebFilter {
 
         ServerHttpRequest request = exchange.getRequest();
         URI uri = request.getURI();
-
+        log.info("拦截路径：{}", uri.getPath());
         AntPathMatcher matcher = new AntPathMatcher();
         List<String> urls = ignoreUrlsConfig.getUrls();
         for (String url : urls) {

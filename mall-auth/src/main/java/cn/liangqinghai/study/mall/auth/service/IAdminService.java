@@ -25,7 +25,7 @@ public interface IAdminService {
      * @param username 用户名称
      * @return userDto
      */
-    @GetMapping("/admin/loadByUsername")
+    @GetMapping("/admin/load-by-username")
     UserDTO loadUserByUsername(@RequestParam String username);
 
 }

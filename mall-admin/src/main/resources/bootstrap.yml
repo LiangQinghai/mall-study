@@ -1,0 +1,11 @@
+server:
+  port: 8586
+spring:
+  application:
+    name: mall-admin
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        file-extension: yaml

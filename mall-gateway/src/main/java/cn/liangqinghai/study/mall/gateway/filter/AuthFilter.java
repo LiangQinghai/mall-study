@@ -30,6 +30,8 @@ public class AuthFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
+        String path = exchange.getRequest().getURI().getPath();
+        log.info("拦截路径：{}", path);
         String authorization = exchange.getRequest().getHeaders()
                 .getFirst("Authorization");
 
