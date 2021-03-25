@@ -23,17 +23,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements IAdminService {
 
-    private final AdminConverter adminConverter;
-
-    public AdminServiceImpl(AdminConverter adminConverter) {
-        this.adminConverter = adminConverter;
-    }
-
     @Override
     public UserDTO loadByUsername(String username) {
         QueryWrapper<Admin> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username", username);
         Admin admin = getOne(queryWrapper);
-        return adminConverter.toUserDTO(admin);
+        return UserDTO.builder()
+                .id(admin.getId())
+                .username(admin.getUsername())
+                .status(admin.getStatus())
+                .password(admin.getPassword())
+                .build();
     }
 }

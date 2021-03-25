@@ -84,4 +84,6 @@ ribbon:
   OkToRetryOnAllOperations: false
   MaxAutoRetriesNextServer: 0
   MaxAutoRetries: 0
-
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true

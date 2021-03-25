@@ -104,7 +104,19 @@
             <appender-ref ref="errorFileLog"/>
             <appender-ref ref="debugFileLog"/>
         </logger>
-        <logger name="org.springframework" level="DEBUG" additivity="false">
+        <logger name="org.nutz" level="DEBUG" additivity="false">
+            <appender-ref ref="consoleLog"/>
+            <appender-ref ref="infoFileLog"/>
+            <appender-ref ref="errorFileLog"/>
+            <appender-ref ref="debugFileLog"/>
+        </logger>
+        <logger name="com.baomidou" level="DEBUG" additivity="false">
+            <appender-ref ref="consoleLog"/>
+            <appender-ref ref="infoFileLog"/>
+            <appender-ref ref="errorFileLog"/>
+            <appender-ref ref="debugFileLog"/>
+        </logger>
+        <logger name="org.apache.ibatis" level="DEBUG" additivity="false">
             <appender-ref ref="consoleLog"/>
             <appender-ref ref="infoFileLog"/>
             <appender-ref ref="errorFileLog"/>

@@ -1,12 +1,15 @@
 package cn.liangqinghai.study.mall.auth.controller;
 
+import cn.liangqinghai.study.mall.common.api.BaseResultEnum;
 import cn.liangqinghai.study.mall.common.api.ResultDTO;
 import cn.liangqinghai.study.mall.common.domain.Oauth2TokenDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +30,7 @@ import java.util.Map;
  * @author LiangQinghai
  * @since 2021/3/19 17:41
  */
+@Slf4j
 @RestController
 @Api(tags = "认证中心接口")
 @RequestMapping("/oauth")
@@ -38,13 +42,18 @@ public class AuthController {
         this.tokenEndpoint = tokenEndpoint;
     }
 
-    @SneakyThrows
     @ApiOperation("Oauth2获取token")
     @RequestMapping(value = "/token", method = RequestMethod.POST)
     public ResultDTO<Oauth2TokenDTO> postAccessToken(@ApiIgnore Principal principal,
                                                      @ApiIgnore @RequestParam Map<String, String> parameters) {
 
-        OAuth2AccessToken token = tokenEndpoint.postAccessToken(principal, parameters).getBody();
+        OAuth2AccessToken token = null;
+        try {
+            token = tokenEndpoint.postAccessToken(principal, parameters).getBody();
+        } catch (HttpRequestMethodNotSupportedException e) {
+            log.error("获取token出现异常", e);
+            return ResultDTO.failed(BaseResultEnum.FAILED);
+        }
         assert token != null;
         Oauth2TokenDTO bearer = Oauth2TokenDTO.builder()
                 .token(token.getValue())

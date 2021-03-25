@@ -90,6 +90,7 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        // 主要是让/oauth/token支持client_id以及client_secret作登录认证
         security.allowFormAuthenticationForClients();
     }
 

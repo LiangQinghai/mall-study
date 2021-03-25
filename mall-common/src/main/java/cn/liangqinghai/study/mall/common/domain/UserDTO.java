@@ -1,6 +1,9 @@
 package cn.liangqinghai.study.mall.common.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.List;
@@ -17,6 +20,9 @@ import java.util.List;
  * @since 2021/3/19 14:22
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserDTO implements Serializable {
 
     private Long id;
